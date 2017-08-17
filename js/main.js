@@ -1,33 +1,56 @@
 var userId = 0;
+var userIds = [];
 var seriesId = 0;
+var questionId = 0;
 
-var user = {
-  "id": userId,
-  //TODO: remove hardcoded username, retreive username from Google login API
-  "username": "usernameTemp",
-  create: function(){
-    this.id = userId++;
-  }
-};
-
-var series = {
-  "id": seriesId,
-  //TODO: remove hardcoded series name, retreive username from user input values
-  "name": "",
-  create: function(){
-    this.id = seriesId++;
-    //TODO: append series to DOM
-  }
-};
-
-var question = {
-  //TODO: read input value from question
-  "question": "",
-  "rating": 0,
-  upvote: function(){
-    this.rating = rating++;
+model = {
+  user: {
+    id: userId,
+    username: this.get().getBasicProfile().getId(),
+    createUser: function() {
+      userIds.push(this.id);
+      userId++;
+    }
   },
-  downvote: function(){
-    this.rating = rating--;
+
+  series: {
+    id: seriesId,
+    adminId: "",
+    //TODO: remove hardcoded series name, retreive username from user input values
+    title: "",
+    createSeries: function() {
+      adminId = model.user.id;
+      this.title = $('series-title-text').val();
+      seriesId++;
+    }
+  },
+
+  question: {
+    id: questionId,
+    //TODO: read input value from question
+    question: $('#question-text-value').val(),
+    rating: 0,
+    createQuestion: function() {
+      this.id = questionId++;
+    },
   }
 };
+
+var controller = {
+  init: function() {
+    //call view init function
+  },
+  upvoteQuestion: function() {
+    model.question.rating++;
+  },
+  downvoteQuestion: function() {
+    model.question.rating--;
+  },
+  //TODO: add event listeners
+};
+
+var views = {
+
+};
+
+controller.init();
