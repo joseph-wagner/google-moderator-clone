@@ -5,17 +5,26 @@
   <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
-  <div id="app">
-    {{ message }}
+  <div id="questionList">
+    <ul>
+      <li v-for="question in  questions">{{ question }}</li>
+    </ul>
+    <button id="addQuestion" @click="addQuestion">Add question</button>
   </div>
 
   <script>
-    var app = new Vue({
-      el: '#app',
+    var vm = new Vue({
+      el: '#questionList',
       data: {
-        message: 'Hello Vue!'
+        questions: ['Why am I so cool?', 'How did I get so popular?', 'Is it 4 o clock yet?']
+      },
+      methods: {
+        addQuestion: function() {
+          console.log(this.questions);
+          this.questions.push('Another question?');
+        }
       }
-    })
+    });
   </script>
 </body>
 </html>
