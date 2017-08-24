@@ -1,3 +1,16 @@
 body {
-  background-color: yellow;
+  height: 100vh;
+}
+
+.header{
+  text-align: center;
+}
+
+.container, .row{
+  height: 100%;
+}
+
+#left-box{
+  height: 100%;
+  border-right: 5px solid black;
 }
